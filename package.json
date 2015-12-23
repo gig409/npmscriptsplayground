@@ -1,0 +1,64 @@
+{
+  "name": "npmbuild",
+  "version": "1.0.0",
+  "description": "A small demo",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm run compile && npm run jslint",
+    "test": "mocha test -u bdd -R spec",
+    "start": "node index.js",
+    "stop": "echo \"Running stop script\"",
+    "restart": "echo \"Running restart script\"",
+    "start:dev": "node index.js 4000",
+    "jslint": "jshint .",
+    "precompile": "npm run clean",
+    "clean": "rimraf lib/*",
+    "globcompile:ts": "tsconfig .",
+    "compile:ts": "tsc",
+    "compile": "npm run globcompile:ts && npm run compile:ts",
+    "build:less": "lessc client/less/demo.less public/css/site.css",
+    "build:bundle": "browserify ./client/js/app.js | uglifyjs -mc > ./public/js/bundle.js",
+    "build:clean": "rimraf public/css/*, public/js/*",
+    "prebuild": "npm run build:clean",
+    "build": "npm run build:less && npm run build:bundle",
+    "watch:compile": "watch \"npm run compile\" src/ts/",
+    "watch:test": "npm run test -- -R min -w",
+    "watch:lint": "watch \"npm run jslint\" .",
+    "watch:server": "nodemon --ignore client --ignore public index.js",
+    "watch:bundle": "watchify ./client/js/app.js -o ./public/js/bundle.js -dv",
+    "watch:bundleWatcher": "watch \"npm run build:bundle\" client",
+    "watch": "parallelshell \"npm run watch:test\" \"npm run watch:bundle\" \"npm run watch:server\""
+    "version:major":"npm version major",
+    "version:minor":"npm version minor",
+    "version:patch":"npm version patch"
+  },
+  "jshintConfig": {
+    "esnext": "true",
+    "noyield": "true"
+  },
+  "keywords": [
+    "npm",
+    "scripting"
+  ],
+  "author": "Garfield Gordon",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "browserify": "^12.0.1",
+    "jscs": "^2.7.0",
+    "jshint": "^2.8.0",
+    "less": "^2.5.3",
+    "mocha": "^2.3.4",
+    "parallelshell": "^2.0.0",
+    "rimraf": "^2.4.5",
+    "should": "^8.0.2",
+    "supertest": "^1.1.0",
+    "tsconfig-glob": "^0.3.3",
+    "typescript": "^1.7.5",
+    "watch": "^0.17.1",
+    "watchify": "^3.6.1"
+  },
+  "dependencies": {
+    "koa": "^1.1.2"
+  }
+}
