@@ -1,6 +1,6 @@
 {
   "name": "npmbuild",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small demo",
   "main": "index.js",
   "scripts": {
@@ -28,9 +28,9 @@
     "watch:bundle": "watchify ./client/js/app.js -o ./public/js/bundle.js -dv",
     "watch:bundleWatcher": "watch \"npm run build:bundle\" client",
     "watch": "parallelshell \"npm run watch:test\" \"npm run watch:bundle\" \"npm run watch:server\"",
-    "version:major":"npm version major",
-    "version:minor":"npm version minor",
-    "version:patch":"npm version patch"
+    "version:major": "npm version major",
+    "version:minor": "npm version minor",
+    "version:patch": "npm version patch"
   },
   "jshintConfig": {
     "esnext": "true",
@@ -61,8 +61,8 @@
   "dependencies": {
     "koa": "^1.1.2"
   },
-  "respository":{
-    "type":"git",
-    "url":"."
+  "respository": {
+    "type": "git",
+    "url": "."
   }
 }
